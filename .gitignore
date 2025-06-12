@@ -83,3 +83,33 @@ crashlytics-build.properties
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Flow/UnitOptions.db.meta
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers
 /[Aa]ssets/Unity.VisualScripting.Generated/VisualScripting.Core/Property Providers.meta
+LuaStudy/.vscode/settings.json
+LuaStudy/.vscode/settings.json
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLuaSettings.lighting
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLuaSettings.lighting.meta
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFileSettings.lighting
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFileSettings.lighting.meta
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByStringSettings.lighting
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByStringSettings.lighting.meta
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoaderSettings.lighting
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoaderSettings.lighting.meta
+LuaStudy/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity
+LuaStudy/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCsSettings.lighting
+LuaStudy/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCsSettings.lighting.meta
+LuaStudy/Packages/packages-lock.json
+LuaStudy/ProjectSettings/AutoStreamingSettings.asset
+LuaStudy/ProjectSettings/PackageManagerSettings.asset
+LuaStudy/ProjectSettings/ProjectVersion.txt
+LuaStudy/.vscode/settings.json
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByFile/ByFile.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/ByString/ByString.unity
+LuaStudy/Assets/XLua/Tutorial/LoadLuaScript/Loader/CustomLoader.unity
+LuaStudy/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity
+LuaStudy/Packages/packages-lock.json
+LuaStudy/ProjectSettings/PackageManagerSettings.asset
+LuaStudy/ProjectSettings/ProjectVersion.txt
