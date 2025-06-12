@@ -113,3 +113,6 @@ LuaStudy/Assets/XLua/Tutorial/LuaCallCSharp/LuaCallCs.unity
 LuaStudy/Packages/packages-lock.json
 LuaStudy/ProjectSettings/PackageManagerSettings.asset
 LuaStudy/ProjectSettings/ProjectVersion.txt
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity
+LuaStudy/.vscode/settings.json
+LuaStudy/Assets/XLua/Tutorial/CSharpCallLua/CSCallLua.unity
