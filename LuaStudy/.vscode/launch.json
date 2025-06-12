@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Unity",
+            "type": "vstuc",
+            "request": "attach"
+        },
+        {
+            "name": "Unity-xlua",
+            "type": "lua",
+            "request": "attach",
+            "runtimeType": "Unity",
+            "localRoot": "${workspaceRoot}",
+            "fileExtNames": [
+                ".lua",
+                ".txt",
+                ".lua.txt",
+                ".bytes"
+            ],
+            "port": 7003,
+            "printType": 1
+        },
+    ],
+    "compounds": [
+        {
+            "name": "Unity + Lua Debug",
+            "configurations": [
+                "Attach to Unity",
+                "Unity-xlua"
+            ]
+        }
+    ]
+}
