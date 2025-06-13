@@ -8,7 +8,7 @@ public interface IScreenProperties { }
 /// </summary>
 public interface IPanelProperties : IScreenProperties
 {
-    PanelPriority priority { get; set; }
+    PanelPriority Priority { get; set; }
 }
 
 /// <summary>
