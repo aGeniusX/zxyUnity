@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,6 +23,11 @@ public class AnimationView : AniComponment
     private bool playReverse = false;
 
     /// <summary>
+    /// 之前ui动画片段
+    /// </summary>
+    private Action previousCallBackWhenFinished;
+
+    /// <summary>
     /// 播放动画
     /// </summary>
     /// <param name="target"></param>
@@ -31,5 +37,17 @@ public class AnimationView : AniComponment
 
     }
 
-    
+    private IEnumerator PlayerAnimationRoutine(Animation targetAnimation, Action callWhenFinished)
+    {
+        previousCallBackWhenFinished = callWhenFinished;
+        foreach (AnimationState state in targetAnimation)
+        {
+            state.time = playReverse ? state.clip.length : 0f;
+            state.speed = playReverse ? -1f : 1f;
+        }
+        targetAnimation.Play(PlayMode.StopAll);
+        yield return new WaitForSeconds(targetAnimation.clip.length);
+        // FininshPrevious();
+    }
+
 }
