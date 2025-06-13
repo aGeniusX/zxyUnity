@@ -53,7 +53,11 @@ public class PanelUILayer : UILayer<IPanelController>
         }
         return false;
     }
-
+    /// <summary>
+    /// 重定位至对应的layer层
+    /// </summary>
+    /// <param name="priority"></param>
+    /// <param name="screenTransform"></param>
     private void ReparentToParaLayer(PanelPriority priority, Transform screenTransform)
     {
         Transform trans;
