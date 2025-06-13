@@ -34,7 +34,8 @@ public class AnimationView : AniComponment
     /// <param name="callWhenFinished"></param>
     public override void Animate(Transform target, Action callWhenFinished)
     {
-
+        FininshPrevious();
+        var tagetAnimation = target.GetComponent<Animation>();
     }
 
     private IEnumerator PlayerAnimationRoutine(Animation targetAnimation, Action callWhenFinished)
@@ -47,7 +48,19 @@ public class AnimationView : AniComponment
         }
         targetAnimation.Play(PlayMode.StopAll);
         yield return new WaitForSeconds(targetAnimation.clip.length);
-        // FininshPrevious();
+        FininshPrevious();
     }
 
+    /// <summary>
+    /// 结束先前动画
+    /// </summary>
+    private void FininshPrevious()
+    {
+        if (previousCallBackWhenFinished != null)
+        {
+            previousCallBackWhenFinished();
+            previousCallBackWhenFinished = null;
+        }
+        StopAllCoroutines();
+    }
 }
