@@ -35,7 +35,11 @@ public class AnimationView : AniComponment
     public override void Animate(Transform target, Action callWhenFinished)
     {
         FininshPrevious();
-        var tagetAnimation = target.GetComponent<Animation>();
+        var targetAnimation = target.GetComponent<Animation>();
+        if (targetAnimation == null)
+        {
+            
+        }
     }
 
     private IEnumerator PlayerAnimationRoutine(Animation targetAnimation, Action callWhenFinished)
