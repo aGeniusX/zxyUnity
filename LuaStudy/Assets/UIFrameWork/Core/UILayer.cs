@@ -36,7 +36,7 @@ public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IScreenCo
     /// <summary>
     /// 初始化lay层
     /// </summary>
-    public virtual void Initalize()
+    public virtual void Initialize()
     {
         registeredScreens = new();
     }
@@ -174,7 +174,7 @@ public abstract class UILayer<TScreen> : MonoBehaviour where TScreen : IScreenCo
     /// </summary>
     /// <param name="screenId"></param>
     /// <param name="controller"></param>
-    private void ProcessScreenUnRegister(string screenId, TScreen controller)
+    protected virtual void ProcessScreenUnRegister(string screenId, TScreen controller)
     {
         controller.ScreenDestroyed -= OnScreenDestroy;
         registeredScreens.Remove(screenId);
