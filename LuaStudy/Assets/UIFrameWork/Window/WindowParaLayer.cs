@@ -1,42 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-/// <summary>
-/// 这是一个“辅助”层级，以便显示优先级更高的窗口。
-/// 默认情况下，它包含任何标记为弹出窗口的窗口。它由 WindowUILayer 控制
-/// </summary>
-public class WindowParaLayer : MonoBehaviour
+namespace UIFramework
 {
-    [SerializeField]
-    private GameObject darkenBgObject = null;
-
-    private List<GameObject> containedScreens = new();
-
-    public void AddScreen(Transform screenRectTransform)
+    /// <summary>
+    /// 这是一个“辅助”层级，以便显示优先级更高的窗口。
+    /// 默认情况下，它包含任何标记为弹出窗口的窗口。它由 WindowUILayer 控制
+    /// </summary>
+    public class WindowParaLayer : MonoBehaviour
     {
-        screenRectTransform.SetParent(transform, false);
-        containedScreens.Add(screenRectTransform.gameObject);
-    }
+        [SerializeField]
+        private GameObject darkenBgObject = null;
 
-    public void RefreshDarken()
-    {
-        foreach (var item in containedScreens)
+        private List<GameObject> containedScreens = new();
+
+        public void AddScreen(Transform screenRectTransform)
         {
-            if (item != null)
+            screenRectTransform.SetParent(transform, false);
+            containedScreens.Add(screenRectTransform.gameObject);
+        }
+
+        public void RefreshDarken()
+        {
+            foreach (var item in containedScreens)
             {
-                if (item.activeSelf)
+                if (item != null)
                 {
-                    darkenBgObject?.SetActive(true);
-                    return;
+                    if (item.activeSelf)
+                    {
+                        darkenBgObject?.SetActive(true);
+                        return;
+                    }
                 }
             }
+            darkenBgObject?.SetActive(false);
         }
-        darkenBgObject?.SetActive(false);
-    }
 
-    public void DarkenBG()
-    {
-        darkenBgObject?.SetActive(true);
-        darkenBgObject.transform.SetAsLastSibling();
+        public void DarkenBG()
+        {
+            darkenBgObject?.SetActive(true);
+            darkenBgObject.transform.SetAsLastSibling();
+        }
     }
 }

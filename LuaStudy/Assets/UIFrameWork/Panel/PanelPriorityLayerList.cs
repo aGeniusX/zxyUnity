@@ -3,39 +3,42 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PanelPriorityLayerList
+namespace UIFramework
 {
-    [SerializeField]
-    [Tooltip("根据面板的优先级查找并存储对应的GameObject。渲染优先级由这些GameObject在层级结构中的顺序决定")]
-    private List<PanelPriorityLayerListEntry> paraLayer = null;
-    private Dictionary<PanelPriority, Transform> lookup;
-
-    public Dictionary<PanelPriority, Transform> ParaLayerLookUp
+    [System.Serializable]
+    public class PanelPriorityLayerList
     {
-        get
+        [SerializeField]
+        [Tooltip("根据面板的优先级查找并存储对应的GameObject。渲染优先级由这些GameObject在层级结构中的顺序决定")]
+        private List<PanelPriorityLayerListEntry> paraLayer = null;
+        private Dictionary<PanelPriority, Transform> lookup;
+
+        public Dictionary<PanelPriority, Transform> ParaLayerLookUp
         {
-            if (lookup == null || lookup.Count == 0)
+            get
             {
-                CacheLookup();
+                if (lookup == null || lookup.Count == 0)
+                {
+                    CacheLookup();
+                }
+                return lookup;
             }
-            return lookup;
         }
-    }
-    /// <summary>
-    /// 初始化面板
-    /// </summary>
-    private void CacheLookup()
-    {
-        lookup = new();
-        foreach (var item in paraLayer)
+        /// <summary>
+        /// 初始化面板
+        /// </summary>
+        private void CacheLookup()
         {
-            lookup.Add(item.Priority, item.TargetParent);
+            lookup = new();
+            foreach (var item in paraLayer)
+            {
+                lookup.Add(item.Priority, item.TargetParent);
+            }
         }
-    }
 
-    public PanelPriorityLayerList(List<PanelPriorityLayerListEntry> entries)
-    {
-        paraLayer = entries;
+        public PanelPriorityLayerList(List<PanelPriorityLayerListEntry> entries)
+        {
+            paraLayer = entries;
+        }
     }
 }

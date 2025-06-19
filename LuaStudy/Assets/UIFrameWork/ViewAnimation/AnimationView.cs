@@ -5,66 +5,69 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-/// <summary>
-/// 具体动画实现
-/// </summary>
-public class AnimationView : AniComponment
+namespace UIFramework
 {
-    [SerializeField]
     /// <summary>
-    /// 对面片段
+    /// 具体动画实现
     /// </summary>
-    private AnimationClip clip = null;
-
-    [SerializeField]
-    /// <summary>
-    /// 重复播放
-    /// </summary>
-    private bool playReverse = false;
-
-    /// <summary>
-    /// 之前ui动画片段
-    /// </summary>
-    private Action previousCallBackWhenFinished;
-
-    /// <summary>
-    /// 播放动画
-    /// </summary>
-    /// <param name="target"></param>
-    /// <param name="callWhenFinished"></param>
-    public override void Animate(Transform target, Action callWhenFinished)
+    public class AnimationView : AniComponment
     {
-        FininshPrevious();
-        var targetAnimation = target.GetComponent<Animation>();
-        if (targetAnimation == null)
-        {
-            
-        }
-    }
+        [SerializeField]
+        /// <summary>
+        /// 对面片段
+        /// </summary>
+        private AnimationClip clip = null;
 
-    private IEnumerator PlayerAnimationRoutine(Animation targetAnimation, Action callWhenFinished)
-    {
-        previousCallBackWhenFinished = callWhenFinished;
-        foreach (AnimationState state in targetAnimation)
-        {
-            state.time = playReverse ? state.clip.length : 0f;
-            state.speed = playReverse ? -1f : 1f;
-        }
-        targetAnimation.Play(PlayMode.StopAll);
-        yield return new WaitForSeconds(targetAnimation.clip.length);
-        FininshPrevious();
-    }
+        [SerializeField]
+        /// <summary>
+        /// 重复播放
+        /// </summary>
+        private bool playReverse = false;
 
-    /// <summary>
-    /// 结束先前动画
-    /// </summary>
-    private void FininshPrevious()
-    {
-        if (previousCallBackWhenFinished != null)
+        /// <summary>
+        /// 之前ui动画片段
+        /// </summary>
+        private Action previousCallBackWhenFinished;
+
+        /// <summary>
+        /// 播放动画
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="callWhenFinished"></param>
+        public override void Animate(Transform target, Action callWhenFinished)
         {
-            previousCallBackWhenFinished();
-            previousCallBackWhenFinished = null;
+            FininshPrevious();
+            var targetAnimation = target.GetComponent<Animation>();
+            if (targetAnimation == null)
+            {
+
+            }
         }
-        StopAllCoroutines();
+
+        private IEnumerator PlayerAnimationRoutine(Animation targetAnimation, Action callWhenFinished)
+        {
+            previousCallBackWhenFinished = callWhenFinished;
+            foreach (AnimationState state in targetAnimation)
+            {
+                state.time = playReverse ? state.clip.length : 0f;
+                state.speed = playReverse ? -1f : 1f;
+            }
+            targetAnimation.Play(PlayMode.StopAll);
+            yield return new WaitForSeconds(targetAnimation.clip.length);
+            FininshPrevious();
+        }
+
+        /// <summary>
+        /// 结束先前动画
+        /// </summary>
+        private void FininshPrevious()
+        {
+            if (previousCallBackWhenFinished != null)
+            {
+                previousCallBackWhenFinished();
+                previousCallBackWhenFinished = null;
+            }
+            StopAllCoroutines();
+        }
     }
 }
