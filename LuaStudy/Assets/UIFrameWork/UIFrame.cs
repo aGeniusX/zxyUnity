@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UIFramework
 {
-    public class UIFrame : MonoBehaviour, IController
+    public class UIFrame : MonoBehaviour
     {
         [Tooltip("如果您想手动初始化此UI框架，请将其设置为false")]
         [SerializeField] private bool initalizeOnGameStart = true;
@@ -313,22 +313,12 @@ namespace UIFramework
                 graphicRaycaster.enabled = true;
         }
 
-        public void OnGameStart()
+        void Awake()
         {
             if (initalizeOnGameStart)
             {
                 Initialize();
             }
-        }
-
-        public void OnLogin(Action onComplete)
-        {
-
-        }
-
-        public void OnLoginOut()
-        {
-
         }
     }
 }

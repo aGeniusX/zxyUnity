@@ -21,7 +21,7 @@ namespace UIFramework
         private List<GameObject> screensToRegister = null;
         [Tooltip("实例化是否停用")]
         [SerializeField]
-        private bool deactiveScreenGOs = true;
+        private bool deactivateScreenGos = true;
 
         public UIFrame CreateUIInstance(bool instanceAndRegisterScreens = true)
         {
@@ -36,7 +36,7 @@ namespace UIFramework
                     if (screenController != null)
                     {
                         newUI.RegisterScreen(screen.name, screenController, screenInstance.transform);
-                        if (deactiveScreenGOs && screenInstance.activeSelf)
+                        if (deactivateScreenGos && screenInstance.activeSelf)
                         {
                             screenInstance.SetActive(false);
                         }
