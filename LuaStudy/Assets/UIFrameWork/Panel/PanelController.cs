@@ -3,7 +3,7 @@ namespace UIFramework
     /// <summary>
     /// 面板控制器
     /// </summary>
-    public abstract class PanelController { }
+    public abstract class PanelController : APanelController<PanelProperties> { }
     /// <summary>
     /// 面板控制器基类
     /// </summary>

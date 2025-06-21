@@ -14,7 +14,7 @@ namespace UIFrameWork.Editor
 {
     public class ScreenIdProcessor : AssetPostprocessor
     {
-        private const string DefaultUIPrefabFolder = "Assets/UI/Screens";
+        private const string DefaultUIPrefabFolder = "Assets/Resources/UI";
         private const string DefaultUIIdScriptFolder = "Assets/Scripts/UI";
         private const string ScreenIdScriptName = "ScreenIds";
         private const string ScreenIdScriptNamespace = "ScreenId";
@@ -22,7 +22,7 @@ namespace UIFrameWork.Editor
         [MenuItem("Assets/Create/UI/Re-generate UI ScreenIds")]
         public static void RegenerateScreenIdsAndRefresh()
         {
-
+            RegenerateScreenIds(true);
         }
 
         private static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
@@ -127,7 +127,7 @@ namespace UIFrameWork.Editor
         {
             var targetUnit = new CodeCompileUnit();
             var codeNamespace = new CodeNamespace(ScreenIdScriptNamespace);
-            codeNamespace.Imports.Add(new CodeNamespaceImport("using System.Collections.Generic"));
+            codeNamespace.Imports.Add(new CodeNamespaceImport("System.Collections.Generic"));
 
             var targetClass = new CodeTypeDeclaration(ScreenIdScriptName)
             {
@@ -198,7 +198,7 @@ namespace UIFrameWork.Editor
                 BlankLinesBetweenMembers = true,
                 VerbatimOrder = true
             };
-
+            //确保目录存在
             string directory = Path.GetDirectoryName(fileName);
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
@@ -211,27 +211,79 @@ namespace UIFrameWork.Editor
         #region 配置文件处理
 
         private const string SettingsPath = "Assets/UIFramework/Editor/Resources/UIFrameworkSettings.asset";
+        private const string UISettingPath = "Assets/Resources/UI/UISettings.asset";
 
-        [MenuItem("UIFramework/Configure Paths")]
+        [MenuItem("UIFramework/Configure Paths", priority = 1)]
         public static void OpenSettings()
         {
+            var settings = GetOrCreateSettings();
+            Selection.activeObject = settings;
+        }
 
+        [MenuItem("UIFramework/Open UI Setting", priority = 1)]
+        private static void OpenUISetting()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<UISetting>(UISettingPath);
+            if (settings == null)
+            {
+                UIFrameWorkTools.CreateUIFramePrefab();
+                return;
+            }
+            else
+            {
+                Selection.activeObject = settings;
+            }
         }
         private static string GetSettingPath()
         {
-            throw new NotImplementedException();
+            return SettingsPath;
+        }
+
+        private static UIFrameworkSettings GetOrCreateSettings()
+        {
+            var settings = AssetDatabase.LoadAssetAtPath<UIFrameworkSettings>(SettingsPath);
+            if (settings == null)
+            {
+                //确保目录存在
+                string directory = Path.GetDirectoryName(SettingsPath);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                settings = ScriptableObject.CreateInstance<UIFrameworkSettings>();
+                settings.uiPrefabFolder = DefaultUIPrefabFolder;
+                settings.uiIdScriptFolder = DefaultUIIdScriptFolder;
+
+                AssetDatabase.CreateAsset(settings, SettingsPath);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                Debug.Log("Created new UIFrameworkSettings at: " + SettingsPath);
+            }
+            return settings;
         }
 
         private static string GetUIPrefabFolder()
         {
-            throw new NotImplementedException();
+            var settings = GetOrCreateSettings();
+            return !string.IsNullOrEmpty(settings.uiPrefabFolder) ?
+                settings.uiPrefabFolder : DefaultUIPrefabFolder;
         }
 
         private static string GetUIIdScriptsFolder()
         {
-            throw new NotImplementedException();
+            var settings = GetOrCreateSettings();
+            return !string.IsNullOrEmpty(settings.uiIdScriptFolder) ?
+                settings.uiIdScriptFolder : DefaultUIIdScriptFolder;
         }
 
         #endregion
+    }
+    public class UIFrameworkSettings : ScriptableObject
+    {
+        [Tooltip("包含UI预制体的文件夹路径")]
+        public string uiPrefabFolder;
+        [Tooltip("ScreenIds脚本的保存路径")]
+        public string uiIdScriptFolder;
     }
 }

@@ -10,6 +10,7 @@ public class PlayerManager : IController
     public void OnGameStart()
     {
         Debug.Log("PlayerController: Game Started");
+        
     }
 
     public void OnLogin(Action onComplete)

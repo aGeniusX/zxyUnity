@@ -12,6 +12,7 @@ public class GameStarter : MonoBehaviour
         GameManager.Instance.RegisterController<StoreController>();
         GameManager.Instance.RegisterController<AchievementController>();
         GameManager.Instance.RegisterController<LuaController>();
+        GameManager.Instance.RegisterController<UIController>();
 
 
         //启动游戏
