@@ -52,6 +52,6 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "LuaStudy.sln",
+    "dotnet.defaultSolution": "IndiaProject.sln",
     "editor.snippetSuggestions": "bottom"
 }
