@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace GameFrameWork
+namespace GameFramework
 {
     [StructLayout(LayoutKind.Auto)]
     public struct GameFrameworkLinkedListRange<T> : IEnumerable<T>, IEnumerable
@@ -23,7 +23,7 @@ namespace GameFrameWork
         {
             if (first == null || terminal == null || first == terminal)
             {
-                //TODO: throw new GameFrameworkException("Range is invalid.");
+                throw new GameFrameworkException("Range is invalid.");
             }
             m_First = first;
             m_Terminal = terminal;
@@ -142,7 +142,7 @@ namespace GameFrameWork
             {
                 if (!range.IsValid)
                 {
-                    //TODO:throw new GameFrameworkException("Range is invalid.");
+                    throw new GameFrameworkException("Range is invalid.");
                 }
 
                 m_GameFrameworkLinkedListRange = range;

@@ -298,7 +298,7 @@ namespace GameFramework
             LinkedListNode<T> first = m_LinkedList.First;
             if (first == null)
             {
-                //TODO: throw new GameFrameworkException("First is invalid.");
+                throw new GameFrameworkException("First is invalid.");
             }
 
             m_LinkedList.RemoveFirst();
@@ -313,7 +313,7 @@ namespace GameFramework
             LinkedListNode<T> last = m_LinkedList.Last;
             if (last == null)
             {
-                //TODO: throw new GameFrameworkException("Last is invalid.");
+                throw new GameFrameworkException("Last is invalid.");
             }
 
             m_LinkedList.RemoveLast();
@@ -384,7 +384,7 @@ namespace GameFramework
             {
                 if (linkedList == null)
                 {
-                    //TODO: throw new GameFrameworkException("Linked list is invalid.");
+                    throw new GameFrameworkException("Linked list is invalid.");
                 }
 
                 m_Enumerator = linkedList.GetEnumerator();
